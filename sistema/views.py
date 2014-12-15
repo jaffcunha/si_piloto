@@ -32,8 +32,8 @@ def editar_pessoa(request, id_pessoa):
 			pessoa_form.save()
 		else:
 			dados_incorretos = True
-			return render_to_response('cadastro_pessoa.html', locals(), context_instance=RequestContext(request))
-	return render_to_response('cadastro_pessoa.html', locals(), context_instance=RequestContext(request))
+			return render(request, 'editar_pessoa.html', locals())
+	return render(request, 'editar_pessoa.html', locals())
 
 def excluir_pessoa(request, id_pessoa):
 	objeto = Pessoa.objects.get(id = id_pessoa)

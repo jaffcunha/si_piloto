@@ -8,3 +8,8 @@ class PessoaForm(forms.ModelForm):
 	class Meta:
 		model = Pessoa
 		fields = ('nome_pessoa', 'idade', 'genero', 'cpf', 'empresa', 'cargo')
+
+class ProjetoForm(forms.ModelForm):
+	class Meta:
+		model = Projeto
+		fields = ('nome_projeto', 'data_inicio', 'data_fim', 'categoria', 'descricao')

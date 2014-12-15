@@ -4,6 +4,7 @@ from django.template import RequestContext
 from sistema.forms import *
 from sistema.models import *
 from django.core.exceptions import PermissionDenied
+from django.conf import settings
 
 # Create your views here.
 
@@ -18,8 +19,8 @@ def cadastro_pessoa(request):
 			pessoa_form.save()
 		else:
 			dados_incorretos = True
-			return render_to_response('cadastro_pessoa.html', locals(), context_instance=RequestContext(request))
-	return render_to_response('cadastro_pessoa.html', locals(), context_instance=RequestContext(request))
+			return render(request, 'cadastro_pessoa.html', locals())
+	return render(request, 'cadastro_pessoa.html', locals())
 
 def editar_pessoa(request, id_pessoa):
 	objeto = Pessoa.objects.get(id = id_pessoa)
@@ -65,8 +66,8 @@ def editar_projeto(request, id_projeto):
 			return render_to_response('cadastro_projeto.html', locals(), context_instance=RequestContext(request))
 	return render_to_response('cadastro_projeto.html', locals(), context_instance=RequestContext(request))
 
-def excluir_projeto:
-	objeto = Projeto.objects.get(id = id_projeto)
-	objeto.delete()
+# def excluir_projeto:
+# 	objeto = Projeto.objects.get(id = id_projeto)
+# 	objeto.delete()
 
 

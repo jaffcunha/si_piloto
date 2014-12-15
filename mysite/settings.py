@@ -12,6 +12,9 @@ https://docs.djangoproject.com/en/1.7/ref/settings/
 import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
+current_path = os.getcwd()
+PROJECT_ROOT_PATH = os.path.dirname(os.path.abspath(__file__))
+
 from os.path import join
 TEMPLATE_PATH = os.path.join(BASE_DIR, 'sistema/templates')
 
@@ -26,6 +29,10 @@ TEMPLATE_DIRS = [
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '&1lnevl+r-67*b8uq^=4299w5jk2q90jil4ls($zn&x5(ts)80'
+
+
+TEMPLATE_LOADERS = ('django.template.loaders.filesystem.Loader',
+ 'django.template.loaders.app_directories.Loader')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -44,6 +51,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'sistema',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -78,9 +86,9 @@ DATABASES = {
 # Internationalization
 # https://docs.djangoproject.com/en/1.7/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'pt-br'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/Sao_Paulo'
 
 USE_I18N = True
 
@@ -91,5 +99,7 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
-
+STATIC_ROOT = '/static/'
 STATIC_URL = '/static/'
+STATICFILES_FINDERS = ("django.contrib.staticfiles.finders.FileSystemFinder",
+ "django.contrib.staticfiles.finders.AppDirectoriesFinder")

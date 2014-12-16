@@ -1,10 +1,13 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect, HttpResponse
-from django.template import RequestContext
+from django.template import RequestContext, loader, Context
 from sistema.forms import *
 from sistema.models import *
 from django.core.exceptions import PermissionDenied
 from django.conf import settings
+import os
+from os import path
+
 
 # Create your views here.
 
@@ -66,8 +69,8 @@ def editar_projeto(request, id_projeto):
 			return render_to_response('cadastro_projeto.html', locals(), context_instance=RequestContext(request))
 	return render_to_response('cadastro_projeto.html', locals(), context_instance=RequestContext(request))
 
-# def excluir_projeto:
-# 	objeto = Projeto.objects.get(id = id_projeto)
-# 	objeto.delete()
+def excluir_projeto(request, id_projeto):
+	objeto = Projeto.objects.get(id = id_projeto)
+	objeto.delete()
 
 

@@ -12,7 +12,7 @@
    <meta content="" name="description" />
    <meta content="Mosaddek" name="author" />
    <link href="/si_piloto/static/assets/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-   <link href="{% static 'assets/bootstrap/css/bootstrap-responsive.min.css' %}" rel="stylesheet" />
+   <link href={% static 'assets/bootstrap/css/bootstrap-responsive.min.css' %} rel="stylesheet" />
    <link href="../../static/assets/bootstrap/css/bootstrap-fileupload.css" rel="stylesheet" />
    <link href="../../static/assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
    <link href="../../static/css/style.css" rel="stylesheet" />
@@ -23,8 +23,6 @@
 </head>
 <!-- END HEAD -->
 <!-- BEGIN BODY -->
-{%block content%}
-{%endblock content%}
 <body class="fixed-top">
   {% load staticfiles %}
   <h1>PASTA3</h1>
@@ -40,7 +38,7 @@
                <!--END SIDEBAR TOGGLE-->
                <!-- BEGIN LOGO -->
                <a class="brand" href="index.html">
-                   <img src="{% static 'img/logo.png' %} alt="Metro Lab" />
+                   <img src={% static 'img/logo.png' %} alt="Metro Lab" />
                </a>
                <!-- END LOGO -->
                <!-- BEGIN RESPONSIVE MENU TOGGLER -->
@@ -491,8 +489,8 @@
             </div>
             <!-- END PAGE HEADER-->
             <!-- BEGIN PAGE CONTENT-->
-
-
+            {%block content%}
+            {%endblock content%}
             <!-- END PAGE CONTENT-->         
          </div>
          <!-- END PAGE CONTAINER-->

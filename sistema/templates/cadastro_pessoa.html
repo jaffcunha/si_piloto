@@ -4,44 +4,30 @@
 
 {% block content %}
 
-<div class="widget red">
+<div class="widget green">
                         <div class="widget-title">
-                           <h4><i class="icon-bar-chart"></i> Notifications</h4>
-                           <span class="tools">
-                               <a href="javascript:;" class="icon-chevron-down"></a>
-                               <a href="javascript:;" class="icon-remove"></a>
-                           </span>
+                            <h4><i class="icon-reorder"></i> Form Layouts</h4>
+                            <span class="tools">
+                            <a href="javascript:;" class="icon-chevron-down"></a>
+                            <a href="javascript:;" class="icon-remove"></a>
+                            </span>
                         </div>
-                      <div class="widget-body">
-                          <div class="alert alert-block alert-warning fade in">
-                              <button data-dismiss="alert" class="close" type="button">×</button>
-                              <h4 class="alert-heading">Warning!</h4>
-                              <p>
-                                  Best check yo self, you're not looking too good. Nulla vitae elit libero, a pharetra augue. Praesent commodo cursus magna, vel scelerisque nisl consectetur et.
-                              </p>
-                          </div>
-                          <div class="alert alert-block alert-success fade in">
-                              <button data-dismiss="alert" class="close" type="button">×</button>
-                              <h4 class="alert-heading">Success!</h4>
-                              <p>
-                                  Best check yo self, you're not looking too good. Nulla vitae elit libero, a pharetra augue. Praesent commodo cursus magna, vel scelerisque nisl consectetur et.
-                              </p>
-                          </div>
-                          <div class="alert alert-block alert-info fade in">
-                              <button data-dismiss="alert" class="close" type="button">×</button>
-                              <h4 class="alert-heading">Info!</h4>
-                              <p>
-                                  Best check yo self, you're not looking too good. Nulla vitae elit libero, a pharetra augue. Praesent commodo cursus magna, vel scelerisque nisl consectetur et.
-                              </p>
-                          </div>
-                          <div class="alert alert-block alert-error fade in">
-                              <button data-dismiss="alert" class="close" type="button">×</button>
-                              <h4 class="alert-heading">Error!</h4>
-                              <p>
-                                  Best check yo self, you're not looking too good. Nulla vitae elit libero, a pharetra augue. Praesent commodo cursus magna, vel scelerisque nisl consectetur et.
-                              </p>
-                          </div>
-                      </div>
-                  </div>
+                        <div class="widget-body">
+                            <!-- BEGIN FORM-->
+                            <form action="#" class="form-horizontal" method='post'> {% csrf_token %}
+                                {% for campo in pessoa_form %}
+                                <div class="control-group">
+                                    <label class="control-label">{{campo.label}}</label>
+                                    <div class="controls">
+                                        {{campo}}
+                                        <!--input type="text" placeholder=".input-large" class="input-large">
+                                        <span class="help-inline">Some hint here</span-->
+                                    </div>
+                                </div>
+                                {% endfor %}
+                                <button class="btn  btn-success" type="submit">Success</button>
+                            <!-- END FORM-->
+                        </div>
+                    </div>
 
 {% endblock content %}

@@ -20,6 +20,7 @@ def cadastro_pessoa(request):
 		pessoa_form = PessoaForm(request.POST)
 		if pessoa_form.is_valid():
 			pessoa_form.save()
+			sucesso = True
 			return HttpResponseRedirect('/cadastro_pessoa/')
 		else:
 			dados_incorretos = True
@@ -34,6 +35,8 @@ def editar_pessoa(request, id_pessoa):
 		pessoa_form = PessoaForm(instance = objeto)
 		if pessoa_form.is_valid():
 			pessoa_form.save()
+			sucesso = True
+			return HttpResponseRedirect('/editar_pessoa/')
 		else:
 			dados_incorretos = True
 			return render(request, 'editar_pessoa.html', locals())

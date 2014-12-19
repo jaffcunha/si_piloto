@@ -32,11 +32,11 @@ def editar_pessoa(request, id_pessoa):
 	if request.method == 'GET':
 		pessoa_form = PessoaForm(instance = objeto)
 	if request.method == 'POST':
-		pessoa_form = PessoaForm(instance = objeto)
+		pessoa_form = PessoaForm(request.POST,instance = objeto)
 		if pessoa_form.is_valid():
 			pessoa_form.save()
 			sucesso = True
-			return HttpResponseRedirect('/editar_pessoa/')
+			return HttpResponseRedirect('/editar_pessoa/%s' %id_pessoa)
 		else:
 			dados_incorretos = True
 			return render(request, 'editar_pessoa.html', locals())

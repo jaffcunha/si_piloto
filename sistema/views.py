@@ -55,6 +55,7 @@ def cadastro_projeto(request):
 		projeto_form = ProjetoForm(request.POST)
 		if projeto_form.is_valid():
 			projeto_form.save()
+			sucesso = True
 		else: 
 			dados_incorretos = True
 			return render_to_response('cadastro_projeto.html', locals(), context_instance=RequestContext(request))

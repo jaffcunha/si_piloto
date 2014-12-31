@@ -4,6 +4,7 @@ from django.template import RequestContext, loader, Context
 from sistema.forms import *
 from sistema.models import *
 from django.core.exceptions import PermissionDenied
+from django.contrib import messages
 from django.conf import settings
 import os
 from os import path
@@ -42,10 +43,15 @@ def editar_pessoa(request, id_pessoa):
 			return render(request, 'editar_pessoa.html', locals())
 	return render(request, 'editar_pessoa.html', locals())
 
+def visualizar_pessoas (request):
+    pessoas = Pessoa.objects.all()
+    return render(request, 'visualizar_pessoas.html', locals())
+
 def excluir_pessoa(request, id_pessoa):
 	objeto = Pessoa.objects.get(id = id_pessoa)
 	objeto.delete()
-
+	messages.success(request, 'O cadastro foi deletado')
+	return HttpResponseRedirect('/visualizar_pessoas/')
 
 #Cadastrar, editar e excluir projetos
 def cadastro_projeto(request):

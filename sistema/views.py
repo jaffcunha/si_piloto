@@ -6,12 +6,11 @@ from sistema.models import *
 from django.core.exceptions import PermissionDenied
 from django.contrib import messages
 from django.conf import settings
+from django.contrib.formtools.wizard.views import SessionWizardView		#INCLUIR
 import os
 from os import path
 
-
 # Create your views here.
-
 
 # Cadastrar, editar e excluir pessoas
 def cadastro_pessoa(request):
@@ -52,6 +51,12 @@ def excluir_pessoa(request, id_pessoa):
 	objeto.delete()
 	messages.success(request, 'O cadastro foi deletado')
 	return HttpResponseRedirect('/visualizar_pessoas/')
+
+#FormWizard
+def done(self, form_list, **kwargs):
+    return render_to_response('done.html', {
+        'form_data': [form.cleaned_data for form in form_list],
+    })
 
 #Cadastrar, editar e excluir projetos
 def cadastro_projeto(request):

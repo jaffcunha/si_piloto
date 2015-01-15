@@ -1,7 +1,8 @@
-from django.db import models
+from django.db import models	
 from django.contrib.auth.models import User
 import os
 from django.db.models.signals import post_save
+from django.contrib.formtools.wizard.views import SessionWizardView		#INCLUIR
 
 # Create your models here.
 
@@ -13,6 +14,9 @@ class Pessoa(models.Model):
 	empresa = models.CharField("Empresa", max_length = 64)
 	cargo = models.CharField("Cargo ocupado", max_length = 64)
 	#Completar com mais atributos mais tarde
+
+class ContactWizard(SessionWizardView):		
+	teste = "oi"
 
 class Projeto(models.Model):
 	nome_projeto = models.CharField("Nome do projeto", max_length = 64)

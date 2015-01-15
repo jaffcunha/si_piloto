@@ -53,7 +53,7 @@ def excluir_pessoa(request, id_pessoa):
 	return HttpResponseRedirect('/visualizar_pessoas/')
 
 #FormWizard
-def done(self, form_list, **kwargs):
+def done(self, form_list, **kwargs): 	#metodo substituido
     return render_to_response('done.html', {
         'form_data': [form.cleaned_data for form in form_list],
     })

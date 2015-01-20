@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, render_to_response
 from django.http import HttpResponseRedirect, HttpResponse
 from django.template import RequestContext, loader, Context
 from sistema.forms import *
@@ -11,6 +11,22 @@ import os
 from os import path
 
 # Create your views here.
+FORMS = [("Pessoa", PessoaForm), 		#INCLUIR para usar templates diferentes para cada form
+		 ("Projeto", ProjetoForm)]
+
+TEMPLATES = {"Pessoa": "wizard_form.html", 	#INCLUIR para usar templates diferentes para cada form
+			"Projeto": "wizard_form_versao2.html"}
+#FormWizard
+class SubClassFormWizard(SessionWizardView):		
+	template_name = 'wizard_form.html' 		#atributo substituido
+	
+	#def get_template_names(self): 			#metodo substituido para diferentes templates para cada form. So deve ser ativado se a url formwizard_diferentes for usada
+	#	return [TEMPLATES[self.steps.current]]
+	
+	def done(self, form_list, **kwargs): 	#metodo substituido
+	    for form in form_list:
+		    form.save()
+	    return HttpResponseRedirect('/visualizar_pessoas/')
 
 # Cadastrar, editar e excluir pessoas
 def cadastro_pessoa(request):
@@ -51,12 +67,6 @@ def excluir_pessoa(request, id_pessoa):
 	objeto.delete()
 	messages.success(request, 'O cadastro foi deletado')
 	return HttpResponseRedirect('/visualizar_pessoas/')
-
-#FormWizard
-def done(self, form_list, **kwargs): 	#metodo substituido
-    return render_to_response('done.html', {
-        'form_data': [form.cleaned_data for form in form_list],
-    })
 
 #Cadastrar, editar e excluir projetos
 def cadastro_projeto(request):

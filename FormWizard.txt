@@ -1,0 +1,20 @@
+FormWizard é uma ferramenta que permite que sejam criados vários forms, separados em páginas diferentes.
+O usuário pode cadastrar parte dos dados em uma tela (pessoais, por exemplo), apertar um botão "página seguinte" e, caso os dados estejam de acordo com o esperado, continuar escrevendo numa nova tela - possivelmente com outro template - outros dados (profissionais, por exemplo). O cadastro só é finalizado após o término de todas as telas. 
+
+Importações:
+	Em views.py e urls.py: from django.contrib.formtools.wizard.views import SessionWizardView
+	Em urls.py: from sistema.forms import *
+
+O Django possui um modo simples de usar o FormWizard.
+
+1-Deve ser criado um form por página, no arquivo forms.py.
+
+2-Em views.py, uma subclasse de parâmetro SessionWizardView deve ser criada. Dentro dela deverá ser reescrito o método done(), conforme feito no arquivo. Ela irá possuir todos os atributos e métodos da classe WizardView definida em C:\Python27\Lib\site-packages\Django-1.7-py2.7.egg\django\contrib\formtools\wizard\views.py e qualquer método ou atributo aqui escrito irá ser adicionado (ou irá sobrescrever algum existente, como o done).
+
+3-No caminho C:\Python27\Lib\site-packages\Django-1.7-py2.7.egg\django\contrib\formtools\templates\formtools\wizard há um arquivo chamado wizard_form.html, ele é um template padrão para seus forms. Em vez de usá-lo, podemos fazer uma cópia e salvá-la em qualquer lugar (por conveniência, junto aos outros templates do projeto). Esta cópia deverá ser alterada conforme necessidade, incluindo uma base, tabelas ou adicionando botões de controle dos forms (next, last, etc). Para que o acesso ocorra a este novo template, devemos reescrever o atributo template_name da classe WizardView, indicando o novo endereço, ou podemos reescrever o método get_template_names(), possibilitando templates diferentes para cada form.
+Neste último caso, precisamos criar listas dos forms e templates existentes, como feito no arquivo views.py.
+
+4-Em urls.py deve-se acrescentar algo como:
+url(r'^formwizard/$', SubClassFormWizard.as_view([PrimeiroForm, SegundoForm]), name='formwizard'), em que o método as_view() foi definido em WizardView.
+ou ainda,
+url(r'^formwizard_diferentes/$', SubClassFormWizard.as_view(FORMS), name='formwizard_diferentes'), para o caso de se reescrever get_template_names(). FORMS é a lista dos forms.

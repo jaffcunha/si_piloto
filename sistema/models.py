@@ -6,7 +6,7 @@ from django.db.models.signals import post_save
 # Create your models here.
 
 class Pessoa(models.Model):
-	nome_pessoa = models.CharField("Nome e sobrenome", max_length = 64)
+	nome_pessoa = models.CharField("Nome completo", max_length = 64)
 	idade = models.IntegerField("Idade", max_length = 16)
 	genero = models.CharField("Genero", max_length = 64)
 	cpf = models.CharField("CPF", max_length = 64)

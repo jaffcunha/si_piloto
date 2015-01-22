@@ -19,4 +19,7 @@ urlpatterns = patterns('',
 	url(r'^editar_projeto/(?P<id_projeto>[0-9]+)/$', 'sistema.views.editar_projeto', name='editar_projeto'),
 	url(r'^formwizard/$', SubClassFormWizard.as_view([PessoaForm, ProjetoForm]), name='formwizard'), 		#INCLUIR
 	url(r'^formwizard_diferentes/$', SubClassFormWizard.as_view(FORMS), name='formwizard_diferentes'), 		#INCLUIR para usar templates diferentes para cada form
+	url(r'^login/$', 'sistema.views.login', name='login'),
+    url(r'^logout/$', 'sistema.views.logout', name='logout'),
+	url(r'^home/$', 'sistema.views.home', name='home'),
 )

@@ -12,7 +12,10 @@ class Pessoa(models.Model):
 	cpf = models.CharField("CPF", max_length = 64)
 	empresa = models.CharField("Empresa", max_length = 64)
 	cargo = models.CharField("Cargo ocupado", max_length = 64)
-	#Completar com mais atributos mais tarde
+
+class Produto(models.Model):
+	nome_produto = models.CharField("Nome do produto", max_length = 64) 
+	valor = models.CharField('Valor do produto', max_length = 64)
 
 class Projeto(models.Model):
 	nome_projeto = models.CharField("Nome do projeto", max_length = 64)

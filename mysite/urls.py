@@ -22,4 +22,5 @@ urlpatterns = patterns('',
 	url(r'^login/$', 'sistema.views.login', name='login'),
     url(r'^logout/$', 'sistema.views.logout', name='logout'),
 	url(r'^home/$', 'sistema.views.home', name='home'),
+	url(r'^pagamento_botao/$', 'sistema.views.pagamento_botao', name='pagamento_botao'),
 )

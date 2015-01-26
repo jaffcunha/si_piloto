@@ -92,6 +92,9 @@ def logout(request):
 	auth.logout(request)
 	return HttpResponseRedirect('/login/')
 
+def pagamento_botao(request):
+	return render(request, 'pagamento_botao.html', locals())
+
 #Cadastrar, editar e excluir projetos
 def cadastro_projeto(request):
 	if request.method == 'GET':

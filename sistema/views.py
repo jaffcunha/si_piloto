@@ -11,6 +11,7 @@ from django.contrib.formtools.wizard.views import SessionWizardView		#INCLUIR
 import os
 from os import path
 from django.contrib.auth import authenticate, login, logout
+from django.forms.formsets import formset_factory
 
 # Create your views here.
 FORMS = [("Pessoa", PessoaForm), 		#INCLUIR para usar templates diferentes para cada form
@@ -130,5 +131,58 @@ def editar_projeto(request, id_projeto):
 def excluir_projeto(request, id_projeto):
 	objeto = Projeto.objects.get(id = id_projeto)
 	objeto.delete()
+	
+	
+#criar, editar e excluir enquete
+def criar_enquete (request):
+	if request.method == 'GET':
+		enquete_form = EnqueteForm()
+	if request.method == 'POST':
+		enquete_form = EnqueteForm(request.POST)
+		if enquete_form.is_valid():
+			enquete_form.save()
+		else: 
+			dados_incorretos = True
+			return render_to_response('criar_enquete.html', locals(), context_instance=RequestContext(request))
+	return render_to_response('criar_enquete.html', locals(), context_instance=RequestContext(request))
+
+def editar_enquete(request, id_enquete):
+	objeto = Enquete.objects.get(id = id_enquete)
+	if request.method == 'GET':
+		projeto_form = EnqueteForm(instance = objeto)
+	if request.method == 'POST':
+		enquete_form = EnqueteForm(instance = objeto)
+		if enquete_form.is_valid():
+			enquete_form.save()
+		else:
+			dados_incorretos = True
+			return render_to_response('criar_enquete.html', locals(), context_instance=RequestContext(request))
+	return render_to_response('criar_enquete.html', locals(), context_instance=RequestContext(request))
+
+def excluir_enquete(request, id_enquete):
+	objeto = Projeto.objects.get(id = id_enquete)
+	objeto.delete()
+
+def cadastro_opcao(request):
+	i = 3
+	OpcaoFormSet= formset_factory(OpcaoForm, extra = i, max_num = 1)
+	formset = OpcaoFormSet()
+	if request.method == 'POST':
+
+		formset = OpcaoFormSet(data=request.POST)
+
+		if formset.is_valid():
+			
+			for cadastros in formset:
+				pass
+				#cadastros.save()
+
+		else :
+			formset = OpcaoFormSet()
+
+
+	return render_to_response('cadastro_opcao.html', locals(), context_instance=RequestContext(request))
+
+
 
 

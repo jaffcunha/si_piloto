@@ -23,3 +23,10 @@ class Projeto(models.Model):
 	data_fim = models.DateField("Fim do projeto (dd/mm/aaaa)")
 	categoria = models.CharField("Categoria", max_length = 64)
 	descricao = models.TextField("Descricao do projeto")
+	
+class Enquete(models.Model):
+	titulo_enquete = models.CharField("Titulo da enquete", max_length = 128)
+	assunto_enquete = models.CharField("Assunto da enquete", max_length = 128)
+	
+class Opcao(models.Model):
+	opcao=models.CharField("Opcao", max_length = 64)

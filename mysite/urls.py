@@ -18,10 +18,16 @@ urlpatterns = patterns('',
 	url(r'^visualizar_projetos/$', 'sistema.views.visualizar_projetos', name='visualizar_projetos'),
 	url(r'^excluir_projeto/(?P<id_projeto>[0-9]+)/$', 'sistema.views.excluir_projeto', name='excluir_projeto'),
 	url(r'^editar_projeto/(?P<id_projeto>[0-9]+)/$', 'sistema.views.editar_projeto', name='editar_projeto'),
+	url(r'^criar_enquete/$', 'sistema.views.criar_enquete', name='criar_enquete'),
+	url(r'^editar_enquete/(?P<id_enquete>[0-9]+)/$', 'sistema.views.editar_enquete', name='editar_enquete'),	
+	url(r'^excluir_enquete/(?P<id_enquete>[0-9]+)/$', 'sistema.views.excluir_enquete', name='excluir_enquete'),
+	url(r'^visualizar_enquete/$', 'sistema.views.visualizar_enquete', name='visualizar_enquete'),
 	url(r'^formwizard/$', SubClassFormWizard.as_view([PessoaForm, ProjetoForm]), name='formwizard'), 		#INCLUIR
 	url(r'^formwizard_diferentes/$', SubClassFormWizard.as_view(FORMS), name='formwizard_diferentes'), 		#INCLUIR para usar templates diferentes para cada form
 	url(r'^login/$', 'sistema.views.login', name='login'),
     url(r'^logout/$', 'sistema.views.logout', name='logout'),
 	url(r'^home/$', 'sistema.views.home', name='home'),
 	url(r'^pagamento_botao/$', 'sistema.views.pagamento_botao', name='pagamento_botao'),
+	url(r'^cadastro_opcao/$', 'sistema.views.cadastro_opcao', name='cadastro_opcao'),
+
 )

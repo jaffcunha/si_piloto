@@ -130,5 +130,38 @@ def editar_projeto(request, id_projeto):
 def excluir_projeto(request, id_projeto):
 	objeto = Projeto.objects.get(id = id_projeto)
 	objeto.delete()
+	
+	
+#criar, editar e excluir enquete
+def criar_enquete (request):
+	if request.method == 'GET':
+		enquete_form = EnqueteForm()
+	if request.method == 'POST':
+		enquete_form = EnqueteForm(request.POST)
+		if enquete_form.is_valid():
+			enquete_form.save()
+		else: 
+			dados_incorretos = True
+			return render_to_response('criar_enquete.html', locals(), context_instance=RequestContext(request))
+	return render_to_response('criar_enquete.html', locals(), context_instance=RequestContext(request))
+
+def editar_enquete(request, id_enquete):
+	objeto = Enquete.objects.get(id = id_enquete)
+	if request.method == 'GET':
+		projeto_form = EnqueteForm(instance = objeto)
+	if request.method == 'POST':
+		enquete_form = EnqueteForm(instance = objeto)
+		if enquete_form.is_valid():
+			enquete_form.save()
+		else:
+			dados_incorretos = True
+			return render_to_response('criar_enquete.html', locals(), context_instance=RequestContext(request))
+	return render_to_response('criar_enquete.html', locals(), context_instance=RequestContext(request))
+
+def excluir_enquete(request, id_enquete):
+	objeto = Projeto.objects.get(id = id_enquete)
+	objeto.delete()
+
+
 
 

@@ -109,18 +109,23 @@ def cadastro_projeto(request):
 			return render_to_response('cadastro_projeto.html', locals(), context_instance=RequestContext(request))
 	return render_to_response('cadastro_projeto.html', locals(), context_instance=RequestContext(request))
 
+def visualizar_projetos (request):
+    projetos = Projeto.objects.all()
+    return render(request, 'visualizar_projetos.html', locals())
+
 def editar_projeto(request, id_projeto):
 	objeto = Projeto.objects.get(id = id_projeto)
 	if request.method == 'GET':
 		projeto_form = ProjetoForm(instance = objeto)
 	if request.method == 'POST':
-		projeto_form = ProjetoForm(instance = objeto)
+		projeto_form = ProjetoForm(request.POST, instance = objeto)
 		if projeto_form.is_valid():
 			projeto_form.save()
+			return HttpResponseRedirect('/editar_projeto/%s' %id_projeto)
 		else:
 			dados_incorretos = True
-			return render_to_response('cadastro_projeto.html', locals(), context_instance=RequestContext(request))
-	return render_to_response('cadastro_projeto.html', locals(), context_instance=RequestContext(request))
+			return render(request,'editar_projeto.html', locals())
+	return render(request,'editar_projeto.html', locals())
 
 def excluir_projeto(request, id_projeto):
 	objeto = Projeto.objects.get(id = id_projeto)

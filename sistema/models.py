@@ -19,7 +19,7 @@ class Produto(models.Model):
 
 class Projeto(models.Model):
 	nome_projeto = models.CharField("Nome do projeto", max_length = 64)
-	data_inicio = models.DateField("Inicio do projeto")
-	data_fim = models.DateField("Fim do projeto")
+	data_inicio = models.DateField("Inicio do projeto (dd/mm/aaaa)")
+	data_fim = models.DateField("Fim do projeto (dd/mm/aaaa)")
 	categoria = models.CharField("Categoria", max_length = 64)
 	descricao = models.TextField("Descricao do projeto")

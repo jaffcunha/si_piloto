@@ -15,6 +15,7 @@ urlpatterns = patterns('',
 	url(r'^excluir_pessoa/(?P<id_pessoa>[0-9]+)/$', 'sistema.views.excluir_pessoa', name='excluir_pessoa'),
 	url(r'^visualizar_pessoas/$', 'sistema.views.visualizar_pessoas', name='visualizar_pessoas'),
 	url(r'^cadastro_projeto/$', 'sistema.views.cadastro_projeto', name='cadastro_projeto'),
+	url(r'^visualizar_projetos/$', 'sistema.views.visualizar_projetos', name='visualizar_projetos'),
 	url(r'^excluir_projeto/(?P<id_projeto>[0-9]+)/$', 'sistema.views.excluir_projeto', name='excluir_projeto'),
 	url(r'^editar_projeto/(?P<id_projeto>[0-9]+)/$', 'sistema.views.editar_projeto', name='editar_projeto'),
 	url(r'^formwizard/$', SubClassFormWizard.as_view([PessoaForm, ProjetoForm]), name='formwizard'), 		#INCLUIR

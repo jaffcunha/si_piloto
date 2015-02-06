@@ -163,6 +163,7 @@ def excluir_enquete(request, id_enquete):
 	objeto = Projeto.objects.get(id = id_enquete)
 	objeto.delete()
 
+<<<<<<< HEAD
 def cadastro_opcao(request):
 	i = 3
 	OpcaoFormSet= formset_factory(OpcaoForm, extra = i, max_num = 1)
@@ -183,6 +184,8 @@ def cadastro_opcao(request):
 
 	return render_to_response('cadastro_opcao.html', locals(), context_instance=RequestContext(request))
 
+=======
+>>>>>>> c34985415f64a4d4f249ee46e44e80dce88a0d53
 
 
 

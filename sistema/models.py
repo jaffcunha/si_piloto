@@ -25,8 +25,14 @@ class Projeto(models.Model):
 	descricao = models.TextField("Descricao do projeto")
 	
 class Enquete(models.Model):
+<<<<<<< HEAD
 	titulo_enquete = models.CharField("Titulo da enquete", max_length = 128)
 	assunto_enquete = models.CharField("Assunto da enquete", max_length = 128)
 	
 class Opcao(models.Model):
 	opcao=models.CharField("Opcao", max_length = 64)
+=======
+	titulo_enquete = models.CharField("Título da enquete", max_length = 128)
+	assunto_enquete = models.CharField("Assunto da enquete", max_length = 128)
+	
+>>>>>>> c34985415f64a4d4f249ee46e44e80dce88a0d53

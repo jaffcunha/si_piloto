@@ -139,12 +139,17 @@ def criar_enquete (request):
 		enquete_form = EnqueteForm()
 	if request.method == 'POST':
 		enquete_form = EnqueteForm(request.POST)
+		numero_enquete = request.POST['num_alternativas']
 		if enquete_form.is_valid():
-			enquete_form.save()
+	#		enquete_form.save()
+			return HttpResponseRedirect('/cadastro_opcao/%s' %numero_enquete)
 		else: 
 			dados_incorretos = True
-			return render_to_response('criar_enquete.html', locals(), context_instance=RequestContext(request))
-	return render_to_response('criar_enquete.html', locals(), context_instance=RequestContext(request))
+			return render(request, 'criar_enquete.html', locals())
+	return render(request, 'criar_enquete.html', locals())
+
+	
+
 
 def editar_enquete(request, id_enquete):
 	objeto = Enquete.objects.get(id = id_enquete)
@@ -163,10 +168,9 @@ def excluir_enquete(request, id_enquete):
 	objeto = Projeto.objects.get(id = id_enquete)
 	objeto.delete()
 
-<<<<<<< HEAD
-def cadastro_opcao(request):
-	i = 3
-	OpcaoFormSet= formset_factory(OpcaoForm, extra = i, max_num = 1)
+def cadastro_opcao(request, numero_enquete):
+	numero_enquete = int(numero_enquete)
+	OpcaoFormSet= formset_factory(OpcaoForm, extra = numero_enquete)
 	formset = OpcaoFormSet()
 	if request.method == 'POST':
 
@@ -183,9 +187,5 @@ def cadastro_opcao(request):
 
 
 	return render_to_response('cadastro_opcao.html', locals(), context_instance=RequestContext(request))
-
-=======
->>>>>>> c34985415f64a4d4f249ee46e44e80dce88a0d53
-
 
 

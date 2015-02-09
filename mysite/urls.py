@@ -28,6 +28,6 @@ urlpatterns = patterns('',
     url(r'^logout/$', 'sistema.views.logout', name='logout'),
 	url(r'^home/$', 'sistema.views.home', name='home'),
 	url(r'^pagamento_botao/$', 'sistema.views.pagamento_botao', name='pagamento_botao'),
-	url(r'^cadastro_opcao/$', 'sistema.views.cadastro_opcao', name='cadastro_opcao'),
+	url(r'^cadastro_opcao/(?P<numero_enquete>[0-9]+)/$', 'sistema.views.cadastro_opcao', name='cadastro_opcao'),
 
 )

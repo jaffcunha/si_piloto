@@ -13,10 +13,10 @@ class ProjetoForm(forms.ModelForm):
 		model = Projeto
 		fields = ('nome_projeto', 'data_inicio', 'data_fim', 'categoria', 'descricao')
 
-class EnqueteForm(forms.Form):
+class EnqueteForm(forms.ModelForm):
 	class Meta:
 		model=Enquete
-		fields=('titulo_enquete', 'assunto_enquete')
+		fields=('pergunta_enquete', 'num_alternativas')
 
 class OpcaoForm(forms.ModelForm):
 	class Meta:

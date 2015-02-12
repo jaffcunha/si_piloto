@@ -141,31 +141,33 @@ def criar_enquete (request):
 		enquete_form = EnqueteForm(request.POST)
 		numero_enquete = request.POST['num_alternativas']
 		if enquete_form.is_valid():
-	#		enquete_form.save()
+			enquete_form.save()
 			return HttpResponseRedirect('/cadastro_opcao/%s' %numero_enquete)
 		else: 
 			dados_incorretos = True
 			return render(request, 'criar_enquete.html', locals())
 	return render(request, 'criar_enquete.html', locals())
 
-	
+# def editar_enquete(request, id_enquete):
+# 	objeto = Enquete.objects.get(id = id_enquete)
+# 	if request.method == 'GET':
+# 		projeto_form = EnqueteForm(instance = objeto)
+# 	if request.method == 'POST':
+# 		enquete_form = EnqueteForm(instance = objeto)
+# 		if enquete_form.is_valid():
+# 			#enquete_form.save()
+# 		else:
+# 			dados_incorretos = True
+# 			return render_to_response('criar_enquete.html', locals(), context_instance=RequestContext(request))
+# 	return render_to_response('criar_enquete.html', locals(), context_instance=RequestContext(request))
 
-
-def editar_enquete(request, id_enquete):
-	objeto = Enquete.objects.get(id = id_enquete)
-	if request.method == 'GET':
-		projeto_form = EnqueteForm(instance = objeto)
-	if request.method == 'POST':
-		enquete_form = EnqueteForm(instance = objeto)
-		if enquete_form.is_valid():
-			enquete_form.save()
-		else:
-			dados_incorretos = True
-			return render_to_response('criar_enquete.html', locals(), context_instance=RequestContext(request))
-	return render_to_response('criar_enquete.html', locals(), context_instance=RequestContext(request))
+def visualizar_enquete (request):
+    enquetes = Enquete.objects.all()
+    opcoes = Opcao.objects.all()
+    return render(request, 'visualizar_enquete.html', locals())
 
 def excluir_enquete(request, id_enquete):
-	objeto = Projeto.objects.get(id = id_enquete)
+	objeto = Enquete.objects.get(id = id_enquete)
 	objeto.delete()
 
 def cadastro_opcao(request, numero_enquete):
@@ -177,15 +179,18 @@ def cadastro_opcao(request, numero_enquete):
 		formset = OpcaoFormSet(data=request.POST)
 
 		if formset.is_valid():
-			
+			sucesso = True
 			for cadastros in formset:
-				pass
-				#cadastros.save()
+				cadastros.save()
 
 		else :
 			formset = OpcaoFormSet()
+			dados_incorretos = True
 
 
 	return render_to_response('cadastro_opcao.html', locals(), context_instance=RequestContext(request))
+
+
+	
 
 

@@ -29,5 +29,5 @@ class Enquete(models.Model):
 	num_alternativas = models.IntegerField("Quantas alternativas sua pergunta tera?", max_length = 128)
 	
 class Opcao(models.Model):
-	opcao=models.CharField("Opcao", max_length = 64)
+	opcao=models.CharField("Alternativa", max_length = 64)
 	

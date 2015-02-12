@@ -14,6 +14,13 @@
                         </div>
                         <div class="widget-body">
                             <!-- BEGIN FORM-->
+                            {%if sucesso%}
+                                <a align="center"><h4><font color="blue">Enquete criada!</font></h4></a>
+                            {%endif%}
+                            {%if dados_incorretos%}
+                                <a align="center"><h4><font color="red">Preencha corretamente os dados.</font></h4></a>
+                            {%endif%}   
+                            
                             <form method='post' action= '#'> {% csrf_token %}
                             {{formset.management_form}}
                          

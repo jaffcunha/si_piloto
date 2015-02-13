@@ -32,20 +32,16 @@
                                      </thead>
                                      
                                  <tbody role="alert" aria-live="polite" aria-relevant="all">
-                                      {% for enquete in enquetes %}
+                                    {% for enquete in enquetes %}
                                     <tr class="odd">
                                          <td class=" sorting_1">{{enquete.pergunta_enquete}}</td>
+                                    {% for opcao in opcoes %}
+                                         <td class=" "> {{opcao.opcao}}</td>
+                                    {% endfor %}
+                                    <td class=" "><a class="edit" href="/editar_enquete/{{enquete.id}}">Editar</a></td>
+                                    <td class=" "><a class="delete" href="/excluir_enquete/{{enquete.id}}" OnClick="return confirm('Tem certeza de que deseja excluir este cadastro? \nEssa ação não pode ser desfeita.')">Excluir</a></td>
                                      </tr>
                                      {% endfor %}
-
-                                     {% for opcao in opcoes %}
-                                    <tr class="odd">
-                                         <td class=" ">{{opcao.opcao}}</td>
-                                     </tr>
-                                     {% endfor %}
-                                         <td class=" "><a class="edit" href="/editar_enquete/{{enquete.id}}">Editar</a></td>
-                                         <td class=" "><a class="delete" href="/excluir_enquete/{{enquete.id}}" OnClick="return confirm('Tem certeza de que deseja excluir este cadastro? \nEssa ação não pode ser desfeita.')">Excluir</a></td>
-                                     </tr>
 
                                      </tr></tbody></table><div class="row-fluid"><div class="span6"><div class="dataTables_info" id="editable-sample_info">Showing 1 to 5 of 12 entries</div></div><div class="span6"><div class="dataTables_paginate paging_bootstrap pagination"><ul><li class="prev disabled"><a href="#">← Prev</a></li><li class="active"><a href="#">1</a></li><li><a href="#">2</a></li><li><a href="#">3</a></li><li class="next"><a href="#">Next → </a></li></ul></div></div></div></div>
                          </div>

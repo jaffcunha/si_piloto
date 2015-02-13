@@ -148,18 +148,21 @@ def criar_enquete (request):
 			return render(request, 'criar_enquete.html', locals())
 	return render(request, 'criar_enquete.html', locals())
 
-# def editar_enquete(request, id_enquete):
-# 	objeto = Enquete.objects.get(id = id_enquete)
-# 	if request.method == 'GET':
-# 		projeto_form = EnqueteForm(instance = objeto)
-# 	if request.method == 'POST':
-# 		enquete_form = EnqueteForm(instance = objeto)
-# 		if enquete_form.is_valid():
-# 			#enquete_form.save()
-# 		else:
-# 			dados_incorretos = True
-# 			return render_to_response('criar_enquete.html', locals(), context_instance=RequestContext(request))
-# 	return render_to_response('criar_enquete.html', locals(), context_instance=RequestContext(request))
+def editar_enquete(request, id_enquete):
+ 	objeto = Enquete.objects.get(id = id_enquete)
+ 	if request.method == 'GET':
+ 		projeto_form = EnqueteForm(instance = objeto)
+ 	if request.method == 'POST':
+ 		enquete_form = EnqueteForm(request.POST,instance = objeto)
+ 		if enquete_form.is_valid():
+ 			enquete_form.save()
+ 			sucesso = True
+ 			return HttpResponseRedirect('/editar_enquete/%s' %id_enquete)
+ 		else:
+ 			dados_incorretos = True
+ 			return render(request, 'editar_enquete.html', locals())
+ 	return render(request, 'editar_enquete.html', locals())
+
 
 def visualizar_enquete (request):
     enquetes = Enquete.objects.all()
@@ -169,6 +172,9 @@ def visualizar_enquete (request):
 def excluir_enquete(request, id_enquete):
 	objeto = Enquete.objects.get(id = id_enquete)
 	objeto.delete()
+	messages.success(request, 'O cadastro foi deletado')
+	return HttpResponseRedirect('/visualizar_enquete/')
+
 
 def cadastro_opcao(request, numero_enquete):
 	numero_enquete = int(numero_enquete)

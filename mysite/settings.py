@@ -98,6 +98,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'sistema',
+    'django_pagseguro', #Adicionar para PagSeguro
 )
 
 MIDDLEWARE_CLASSES = (
@@ -114,3 +115,10 @@ ROOT_URLCONF = 'mysite.urls'
 
 WSGI_APPLICATION = 'mysite.wsgi.application'
 
+#Constantes para usar PagSeguro
+
+PAGSEGURO_EMAIL_COBRANCA = 'seu@email.com' # email de cobranca usado no pagseguro
+PAGSEGURO_TOKEN = '1a3ea7wq2e7eq8e1e223add23ad23' # token gerado no sistema de url de retorno do pagseguro
+PAGSEGURO_URL_RETORNO = '/pagseguro/retorno/' # url para receber o POST de retorno do pagseguro
+PAGSEGURO_URL_FINAL = '/obrigado/' # url final para redirecionamento
+PAGSEGURO_ERRO_LOG  = '/tmp/pagseguro_erro.log' # arquivo para salvar os erros de validacao de retorno com o pagseguro(opcional)

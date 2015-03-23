@@ -12,6 +12,7 @@ import os
 from os import path
 from django.contrib.auth import authenticate, login, logout
 from django.forms.formsets import formset_factory
+from django_pagseguro.signals import pagamento_aprovado #Incluir para PagSeguro
 
 # Create your views here.
 FORMS = [("Pessoa", PessoaForm), 		#INCLUIR para usar templates diferentes para cada form
@@ -30,6 +31,13 @@ class SubClassFormWizard(SessionWizardView):
 	    for form in form_list:
 		    form.save()
 	    return HttpResponseRedirect('/visualizar_pessoas/')
+
+#PagSeguro
+#def liberar_pedido(sender, **kwargs):
+ #   ref = sender.referencia
+  #  tipo_pagamento = sender.dados['TipoPagamento'] # exemplo de como pegar informacoes enviada pelo PagSeguro
+    # aqui voce deve executar seu codigo para liberar o pedido para a Referencia
+	#pagamento_aprovado.connect(liberar_pedido) 
 
 # Cadastrar, editar e excluir pessoas
 def cadastro_pessoa(request):

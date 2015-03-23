@@ -3,6 +3,7 @@ from django.contrib import admin
 from sistema.views import *
 from sistema.forms import *	#INCLUIR
 from django.contrib.formtools.wizard.views import SessionWizardView	 #INCLUIR
+from django_pagseguro.urls import pagseguro_urlpatterns #INCLUIR para uso de PagSeguro
 
 urlpatterns = patterns('',
     # Examples:
@@ -29,5 +30,6 @@ urlpatterns = patterns('',
 	url(r'^home/$', 'sistema.views.home', name='home'),
 	url(r'^pagamento_botao/$', 'sistema.views.pagamento_botao', name='pagamento_botao'),
 	url(r'^cadastro_opcao/(?P<numero_enquete>[0-9]+)/$', 'sistema.views.cadastro_opcao', name='cadastro_opcao'),
-
 )
+
+urlpatterns += pagseguro_urlpatterns()

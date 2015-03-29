@@ -86,7 +86,22 @@ SECRET_KEY = '&1lnevl+r-67*b8uq^=4299w5jk2q90jil4ls($zn&x5(ts)80'
 TEMPLATE_LOADERS = ('django.template.loaders.filesystem.Loader',
  'django.template.loaders.app_directories.Loader')
 
+TEMPLATE_CONTEXT_PROCESSORS = (
+    'django.contrib.auth.context_processors.auth',
+    'django.core.context_processors.debug',
+    'django.core.context_processors.i18n',
+    'django.core.context_processors.media',
+    'django.core.context_processors.static',
+    'django.core.context_processors.tz',
+    'django.core.context_processors.request',
+    'django.contrib.messages.context_processors.messages',
+    'django_facebook.context_processors.facebook',
+)
 
+AUTHENTICATION_BACKENDS = (
+    'django_facebook.auth_backends.FacebookBackend',
+    'django.contrib.auth.backends.ModelBackend',
+)
 
 # Application definition
 
@@ -98,6 +113,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'sistema',
+    'django_facebook',
     'django_pagseguro', #Adicionar para PagSeguro
 )
 
@@ -122,3 +138,6 @@ PAGSEGURO_TOKEN = '1a3ea7wq2e7eq8e1e223add23ad23' # token gerado no sistema de u
 PAGSEGURO_URL_RETORNO = '/pagseguro/retorno/' # url para receber o POST de retorno do pagseguro
 PAGSEGURO_URL_FINAL = '/obrigado/' # url final para redirecionamento
 PAGSEGURO_ERRO_LOG  = '/tmp/pagseguro_erro.log' # arquivo para salvar os erros de validacao de retorno com o pagseguro(opcional)
+
+FACEBOOK_APP_ID = '1449170062040477'
+FACEBOOK_APP_SECRET = '71a292c4eef5fb6c1094e3af0394b484'

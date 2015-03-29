@@ -4,6 +4,7 @@ import os
 from django.db.models.signals import post_save
 
 # Create your models here.
+AUTH_USER_MODEL = 'django_facebook.FacebookCustomUser'
 
 class Pessoa(models.Model):
 	nome_pessoa = models.CharField("Nome completo", max_length = 64)
